@@ -1,0 +1,60 @@
+#casillas{
+    display: flex;
+    flex-direction: row;
+    gap:1em;
+    justify-content: left;
+    align-items: center;
+}
+button{
+    margin-top: 1em;
+    padding: 0.75em;
+    width: 100px;
+    color: white;
+    border:none;
+    background-color: purple;
+}
+button:hover{
+    background-color: #F902D7;
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+.caja{
+    border:2px solid black;
+    width: 100px;
+    height: 100px;
+}
+.ficha{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+#ficha3{
+    background-color: yellow;
+    position: relative;
+    bottom: 75px;
+    left: 25px;
+}
+#ficha1{
+    background-color: red;
+    position: relative;
+    bottom: 75px;
+    left: 25px;
+}
+#ficha2{
+    background-color: green;
+    position: absolute;
+    top: 20px;
+    left: 25px;
+}
+#ficha4{
+    background-color: blue;
+    position: relative;
+    bottom: 75px;
+    left: 25px;
+}

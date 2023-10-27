@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="MoverFicha01.css">
+    <title>Colocar Ficha</title>
+    <script>
+        window.addEventListener("load", iniciar);
+        function iniciar(){
+            var boton = document.getElementById("mover");
+            boton.addEventListener("click", mover);
+        }
+        function mover(){
+            var ficha = document.getElementById("ficha1");
+            var caja = ficha.parentElement;
+            caja.removeChild(ficha);
+            if(caja.nextElementSibling){
+                caja.nextElementSibling.appendChild(ficha);
+            }else{
+                document.getElementsByClassName("caja")[0].appendChild(ficha);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="casillas">
+        <div class= "caja" id= "caja1">
+            <img src="zanahoria.JPG" alt="">
+            <div class= "ficha" id= "ficha1"> 1 </div>
+        </div>
+        
+        <div class = "caja" id= "caja2">
+            <img src="piratas.jpg" alt="">  
+        </div>
+        <div class= "caja" id= "caja4">
+            <img src="PalomaSinFondo-576x1024.png" alt="">
+        </div>
+    </div>
+    <button id="mover">Mover</button>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="MoverFichas.css">
+    <title>Colocar Fichas</title>
+    <script>
+        const numFichas = 4;
+        window.addEventListener("load", iniciar);
+        function iniciar(){
+            var botones = document.createElement("div");
+            var caja = document.getElementById("caja1");
+            botones.id = "botones";
+            for(i = 1; i <= numFichas; i++){
+                boton = document.createElement("button");
+                boton.innerText = "mover ficha " + i;
+                boton.id ="boton" + i;
+                botones.appendChild(boton);
+                ficha = document.createElement("div");
+                ficha.innerText = i;
+                ficha.className = "ficha";
+                ficha.id ="ficha" + i;
+                caja.appendChild(ficha);
+                boton.addEventListener("click", mover);
+            }
+            document.body.appendChild(botones);
+        }
+        function mover(e){
+            var boton = e.target;
+            var id = boton.id;
+            var numFicha = id.substring(id.length - 1 ,id.length);
+            var ficha = document.getElementById("ficha" + numFicha);
+            var animaFicha = ficha.animate([
+                {opacity: 1},
+                {opacity: 0}
+            ], {duration: 1000, fill:"forwards"});
+            animacionTerminada = animaFicha.finished;
+            animacionTerminada.then(() => {
+                var caja = ficha.parentElement;
+                if(caja.nextElementSibling){
+                    caja.nextElementSibling.appendChild(ficha);
+                }else{
+                    document.getElementsByClassName("caja")[0].appendChild(ficha);
+                }
+                animaFicha.reverse();
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="casillas">
+        <div class= "caja" id= "caja1">
+            <img src="zanahoria.JPG" alt="">
+        </div>
+        
+        <div class = "caja" id= "caja2">
+            <img src="piratas.jpg" alt="">  
+        </div>
+        <div class= "caja" id= "caja4">
+            <img src="PalomaSinFondo-576x1024.png" alt="">
+        </div>
+    </div>
+</body>
+</html>

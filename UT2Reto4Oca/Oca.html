@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Oca.css">
+    <title>Juego de la Oca</title>
+    <script>
+        window.addEventListener("load", iniciar);
+        var turno = 0;
+        const numFichas = 4;
+        function iniciar(){
+            crearTablero();
+            crearDado();
+        }
+        function crearDado(){
+            div = document.createElement("div");
+            div.className = "dado";
+            imagen = document.createElement("img");
+            imagen.src = "../img/dado.png";
+            div.appendChild(imagen);
+            div.addEventListener("click", girarDado);
+            document.body.appendChild(div);
+        }
+        function girarDado(){
+            turno ++;
+            if(turno > numFichas){
+                turno = 1;
+            }
+            numRandom = Math.floor(Math.random() * 6) + 1;
+            var dado = document.getElementsByClassName("dado")[0];
+            imagen = dado.firstElementChild;
+            imagen.src = "../img/Dado-cara" + numRandom + ".jpg";
+            dado.id = "dado" + numRandom;
+            animarDado(imagen);
+        }
+        function animarDado(imagen){
+            var animacion = [
+                {transform: "rotate(30deg)"},
+                {transform: "rotate(90deg)"},
+                {transform: "rotate(180deg)"},
+                {transform: "rotate(360deg)"},
+            ]
+            imagen.animate(animacion, {duration: 200});
+        }
+        function crearTablero(){
+            var botones = document.createElement("div");
+            var caja = document.getElementById("caja1");
+            botones.id = "botones";
+            for(i = 1; i <= numFichas; i++){
+                boton = document.createElement("button");
+                boton.innerText = "mover ficha " + i;
+                boton.id ="boton" + i;
+                botones.appendChild(boton);
+                ficha = document.createElement("div");
+                ficha.innerText = i;
+                ficha.className = "ficha";
+                ficha.id ="ficha" + i;
+                caja.appendChild(ficha);
+                boton.addEventListener("click", mover);
+            }
+            document.body.appendChild(botones);
+        }
+        function mover(e){
+            var boton = e.target;
+            var id = boton.id;
+            var numFicha = id.substring(id.length - 1 ,id.length);
+            var ficha = document.getElementById("ficha" + numFicha);
+            var dado = document.getElementsByClassName("dado")[0];
+            if(dado.id != ""  && turno == numFicha){
+                var cajaInicial = ficha.parentElement;
+                var veces = Number(dado.id.substring(dado.id.length - 1 ,dado.id.length));
+                moverFicha(0);
+                function moverFicha(i){
+                    var caja = ficha.parentElement;
+                    if (i < veces) {
+                        if (caja.nextElementSibling) {
+                            var animaFicha = ficha.animate([
+                            { transform: "scale(1.05)" },
+                            { transform: "scale(1.1)" }
+                            ], { duration: 300, fill: "forwards" });
+                            animaFicha.onfinish = function() {
+                                caja.nextElementSibling.appendChild(ficha);
+                                moverFicha(i + 1);
+                            };
+                            if (caja.nextElementSibling == document.getElementById("casillas").lastElementChild && i === (veces - 1)) {
+                                terminarJuego(dado, numFicha);
+                            }
+                        } else {
+                            regresar(ficha, i, veces);
+                        }
+                    }
+                }
+                dado.id = "";
+            }
+        }
+        function regresar(ficha, i, veces){
+            ultima = document.getElementById("casillas").lastElementChild;
+            ultima.appendChild(ficha);
+            veces = veces - i;
+            regresarFicha(0);
+            function regresarFicha(i){
+                caja = ficha.parentElement;
+                if (i < veces) {
+                    var animaFicha = ficha.animate([
+                        { transform: "scale(1.05)" },
+                        { transform: "scale(1.1)" }
+                    ], { duration: 300, fill: "forwards" });
+                    animaFicha.onfinish = function() {
+                        caja.previousElementSibling.appendChild(ficha);
+                        regresarFicha(i + 1);
+                    };
+                }
+            }
+        }
+        function terminarJuego(dado, numFicha){
+            alert("HAS GANADO JUGADOR " + numFicha);
+            dado.removeEventListener("click", girarDado);
+            var botones = document.querySelectorAll("button");
+            for(i = 0; i < botones.length; i++){
+                botones[i].removeEventListener("click", mover);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="casillas">
+        <div class= "caja" id= "caja1">
+            <img src="zanahoria.JPG" alt="">
+        </div>
+        
+        <div class = "caja" id= "caja2">
+            <img src="piratas.jpg" alt="">  
+        </div>
+        <div class= "caja" id= "caja3">
+            <img src="PalomaSinFondo-576x1024.png" alt="">
+        </div>
+        <div class= "caja" id= "caja4">
+            <img src="zanahoria.JPG" alt="">
+        </div>
+        
+        <div class = "caja" id= "caja5">
+            <img src="piratas.jpg" alt="">  
+        </div>
+        <div class= "caja" id= "caja6">
+            <img src="PalomaSinFondo-576x1024.png" alt="">
+        </div>
+        <div class= "caja" id= "caja7">
+            <img src="zanahoria.JPG" alt="">
+        </div>
+        
+        <div class = "caja" id= "caja8">
+            <img src="piratas.jpg" alt="">  
+        </div>
+        <div class= "caja" id= "caja9">
+            <img src="PalomaSinFondo-576x1024.png" alt="">
+        </div>
+        <div class= "caja" id= "caja10">
+            <img src="zanahoria.JPG" alt="">
+        </div>
+        
+        <div class = "caja" id= "caja11">
+            <img src="piratas.jpg" alt="">  
+        </div>
+        <div class= "caja" id= "caja12">
+            <img src="PalomaSinFondo-576x1024.png" alt="">
+        </div>
+    </div>
+</body>
+</html>

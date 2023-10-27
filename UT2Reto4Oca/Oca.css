@@ -1,0 +1,75 @@
+#casillas{
+    display: flex;
+    flex-direction: row;
+    gap:1em;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 50%;
+}
+#botones{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+button{
+    padding: 0.75em;
+    width: 100px;
+    color: white;
+    border:none;
+    background-color: purple;
+}
+button:hover{
+    background-color: #F902D7;
+}
+.caja {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.ficha {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid black;
+    position: absolute;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#ficha1 {
+    background-color: red;
+    left: 50%;
+    top: 15%;
+}
+
+#ficha2 {
+    background-color: green;
+    left: 10%;
+    top: 15%;
+}
+
+#ficha3 {
+    background-color: yellow;
+    left: 10%;
+    top: 45%;
+}
+
+#ficha4 {
+    background-color: blue;
+    left: 50%;
+    top: 45%;
+}
+.dado{
+    margin-top: 1em;
+    width:100px;
+    height: 100px;
+}
